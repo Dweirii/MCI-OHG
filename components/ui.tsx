@@ -1,59 +1,22 @@
 import Link from "next/link";
 import type { ElementType, ReactNode } from "react";
 
-/**
- * Heading text where chosen letters switch font: letters in `script` use the
- * script face when they start a word, letters in `italic` use light italic
- * Inter everywhere. Italic wins when a letter is in both sets.
- */
-export function MixedText({
+/** A balanced heading in the brand's light capitals. */
+export function Heading({
   as: Tag = "h2",
   text,
-  script = "",
-  italic = "o,a",
   className = "",
 }: {
   as?: ElementType;
   text: string;
-  script?: string;
-  italic?: string;
   className?: string;
 }) {
-  const toSet = (list: string) =>
-    new Set(list.split(",").map((c) => c.trim().toLowerCase()).filter(Boolean));
-  const scriptSet = toSet(script);
-  const italicSet = toSet(italic);
+  return <Tag className={`balance ${className}`}>{text}</Tag>;
+}
 
-  let wordStart = true;
-  const parts: ReactNode[] = [];
-  let run = "";
-  const flush = () => {
-    if (run) parts.push(run);
-    run = "";
-  };
-
-  Array.from(text.toUpperCase()).forEach((ch, i) => {
-    const lower = ch.toLowerCase();
-    const isWordChar = /[a-z0-9]/i.test(ch);
-    if (italicSet.has(lower)) {
-      flush();
-      parts.push(<span key={i} className="ch-italic">{ch}</span>);
-    } else if (wordStart && isWordChar && scriptSet.has(lower)) {
-      flush();
-      parts.push(<span key={i} className="ch-script">{ch}</span>);
-    } else {
-      run += ch;
-    }
-    if (/\s/.test(ch)) wordStart = true;
-    else if (isWordChar) wordStart = false;
-  });
-  flush();
-
-  return (
-    <Tag className={`balance ${className}`} aria-label={text}>
-      <span aria-hidden>{parts}</span>
-    </Tag>
-  );
+/** Small wide-spaced label that opens a section, as in the company profile. */
+export function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return <p className={`eyebrow ${className}`}>{children}</p>;
 }
 
 export function Sparkle({ className = "size-2.5" }: { className?: string }) {
@@ -92,18 +55,18 @@ export function Button({
 }: {
   href: string;
   children: ReactNode;
-  tone?: "skin" | "outline" | "dark";
+  tone?: "skin" | "light" | "outline";
   className?: string;
 }) {
   const tones = {
-    skin: "bg-skin text-dark hover:bg-[#b9a697]",
+    skin: "bg-skin-deep text-white hover:bg-[#75604f]",
+    light: "bg-paper text-skin-deep hover:bg-white",
     outline: "border border-mocha-20 text-dark hover:bg-sand",
-    dark: "bg-dark text-ivory hover:bg-[#3a3129]",
   };
   return (
     <Link
       href={href}
-      className={`group relative inline-flex h-11 min-w-[170px] items-start rounded-[4px] px-3 pt-2.5 text-nav transition-colors ${tones[tone]} ${className}`}
+      className={`group relative inline-flex h-11 min-w-[170px] items-start px-3 pt-3 text-nav transition-colors ${tones[tone]} ${className}`}
     >
       {children}
       <span className="absolute right-2.5 bottom-2.5 size-[5px] rounded-full bg-current transition-transform duration-300 group-hover:scale-150" />
@@ -111,14 +74,15 @@ export function Button({
   );
 }
 
-/** Thin decorative ring behind taupe sections, with a sparkle on its edge. */
-export function Ring({ className = "" }: { className?: string }) {
+/** Thin decorative ring behind a section, with a sparkle on its edge. */
+export function Ring({ className = "", tone = "dark" }: { className?: string; tone?: "dark" | "light" }) {
+  const colors = tone === "light" ? "border-white/15 text-white/60" : "border-skin/25 text-skin";
   return (
     <div
       aria-hidden
-      className={`pointer-events-none absolute left-1/2 z-[1] aspect-square h-[1220px] -translate-x-1/2 rounded-full border border-dark/10 ${className}`}
+      className={`pointer-events-none absolute left-1/2 z-[1] aspect-square h-[1220px] -translate-x-1/2 rounded-full border ${colors} ${className}`}
     >
-      <Sparkle className="absolute -bottom-[7px] left-1/2 size-3.5 -translate-x-1/2 text-dark/50" />
+      <Sparkle className="absolute -bottom-[7px] left-1/2 size-3.5 -translate-x-1/2" />
     </div>
   );
 }

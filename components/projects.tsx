@@ -1,30 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/content";
-import { Button, Container, MixedText } from "./ui";
+import { Button, Container } from "./ui";
 
 export function Projects() {
   const [first, second, third] = projects.items;
+  const { small, solid, outline } = projects.heading;
 
   return (
-    <section className="relative overflow-hidden py-[150px] max-md:py-24">
+    <section className="relative overflow-hidden bg-white py-[150px] max-md:py-24">
       <Container max="max-w-[1820px]" className="flex flex-col gap-[70px]">
         <div className="flex items-center gap-[70px] max-md:flex-col max-md:items-start max-md:gap-6">
           <p className="max-w-[430px] flex-1 text-mocha">{projects.intro}</p>
-          <div className="h-px flex-[0.8] bg-mocha-20 max-md:hidden" />
+          <div className="h-px flex-[0.8] bg-skin/40 max-md:hidden" />
           <Button href="/project">All Projects</Button>
         </div>
 
         {/* Staggered two-column layout: card | title, then an offset pair. */}
         <div className="grid grid-cols-2 gap-x-[120px] gap-y-20 max-lg:gap-x-12 max-md:grid-cols-1 max-md:gap-y-14">
           <ProjectCard {...first} />
-          <div className="flex items-start max-md:order-first">
-            <MixedText
-              text={projects.heading}
-              script={projects.headingScript}
-              className="h2 w-full max-w-[565px]"
-            />
-          </div>
+          {/* Stacked title from the profile's "Our Residential Projects" page. */}
+          <h2 className="flex flex-col text-skin-deep max-md:order-first">
+            <span className="eyebrow pl-1">{small}</span>
+            <span className="h-xl mt-2 tracking-[0.08em]">{solid}</span>
+            <span className="h-xl outline-text tracking-[0.08em] text-skin">{outline}</span>
+          </h2>
           <div className="flex w-[116%] justify-end max-md:w-full max-md:justify-start">
             <ProjectCard {...second} />
           </div>
@@ -59,8 +59,8 @@ function ProjectCard({ name, href, image }: { name: string; href: string; image:
         />
       </div>
       <div className="flex items-start justify-between gap-4">
-        <h2 className="h5">{name}</h2>
-        <span className="relative inline-flex h-11 min-w-[170px] rounded-[4px] border border-mocha-20 px-3 pt-2.5 text-nav transition-colors group-hover:bg-dark group-hover:text-ivory">
+        <h3 className="h5 text-dark">{name}</h3>
+        <span className="relative inline-flex h-11 min-w-[170px] border border-skin/50 px-3 pt-3 text-nav text-skin-deep transition-colors group-hover:bg-skin-deep group-hover:text-white">
           View details
           <span className="absolute right-2.5 bottom-2.5 size-[5px] rounded-full bg-current" />
         </span>

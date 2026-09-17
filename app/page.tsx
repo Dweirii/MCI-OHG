@@ -3,8 +3,10 @@ import { Hero } from "@/components/hero";
 import { Stats } from "@/components/stats";
 import { Projects } from "@/components/projects";
 import { Process } from "@/components/process";
+import { WhatWeDo } from "@/components/what-we-do";
+import { VisionMission } from "@/components/vision-mission";
 import { Leadership } from "@/components/leadership";
-import { Services } from "@/components/services";
+import { Profile } from "@/components/profile";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
@@ -16,8 +18,10 @@ export default function Home() {
         <Stats />
         <Projects />
         <Process />
+        <WhatWeDo />
+        <VisionMission />
         <Leadership />
-        <Services />
+        <Profile />
       </main>
       <Footer />
     </>

@@ -42,3 +42,8 @@ next-env.d.ts
 
 # client originals (the site uses the resized copies in public/media/mci)
 /public/mci images */
+# raw client uploads dropped into public/ (the site uses public/media/mci)
+/public/*.jpeg
+/public/*.jpg
+/public/*.png
+!/public/logo.png

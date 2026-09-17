@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Inter, Mea_Culpa } from "next/font/google";
+import { Lato } from "next/font/google";
 import "./globals.css";
 
-const geist = Geist({ variable: "--font-geist", subsets: ["latin"] });
-
-const inter = Inter({
-  variable: "--font-inter",
+// Lato is the typeface on MCI's business card and company profile.
+const lato = Lato({
+  variable: "--font-lato",
   subsets: ["latin"],
-  style: ["normal", "italic"],
-});
-
-const meaCulpa = Mea_Culpa({
-  variable: "--font-mea-culpa",
-  subsets: ["latin"],
-  weight: "400",
+  weight: ["300", "400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -24,10 +17,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geist.variable} ${inter.variable} ${meaCulpa.variable}`}
-    >
+    <html lang="en" className={lato.variable}>
       <body>{children}</body>
     </html>
   );

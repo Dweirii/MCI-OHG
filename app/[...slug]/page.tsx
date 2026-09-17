@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Nav } from "@/components/nav";
-import { Button, MixedText, Sparkle } from "@/components/ui";
+import { Button, Eyebrow, Heading } from "@/components/ui";
 import { comingSoon, comingSoonPaths, pageName } from "@/content";
 
 // Only the site's own links are served here; anything else 404s.
@@ -27,23 +27,17 @@ export default async function ComingSoonPage({ params }: PageProps<"/[...slug]">
   return (
     <>
       <Nav />
-      <main className="relative flex min-h-svh items-center justify-center overflow-hidden bg-dark px-5 py-40">
+      <main className="relative flex min-h-svh items-center justify-center overflow-hidden bg-skin-deep px-5 py-40">
         <Image src={comingSoon.image} alt="" fill priority sizes="100vw" className="object-cover" />
-        <div className="absolute inset-0 bg-dark/65" />
+        <div className="absolute inset-0 bg-dark/55" />
 
         <div className="fade-in relative z-10 flex flex-col items-center gap-8 text-center">
-          <p className="flex items-center gap-2.5 text-label text-ivory/80">
-            <Sparkle className="size-2.5 text-skin" />
-            {name}
-          </p>
-          <MixedText
-            as="h1"
-            text={comingSoon.heading}
-            script={comingSoon.headingScript}
-            className="h-xl text-ivory"
-          />
-          <p className="max-w-[440px] text-ivory/80">{comingSoon.body}</p>
-          <Button href="/">Back to home</Button>
+          <Eyebrow className="text-white/80">{name}</Eyebrow>
+          <Heading as="h1" text={comingSoon.heading} className="h-xl text-white" />
+          <p className="max-w-[440px] text-white/85">{comingSoon.body}</p>
+          <Button href="/" tone="light">
+            Back to home
+          </Button>
         </div>
       </main>
     </>

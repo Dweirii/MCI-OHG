@@ -1,12 +1,13 @@
-// All copy and media for the home page. The components only read from here.
+// All copy and media for the site. The components only read from here.
 
 export const brand = {
   name: "MCI",
+  website: "www.mcidecor.com",
   // Traced from the supplied logo.png so it stays sharp at any size.
   logo: { src: "/logo.svg", width: 336, height: 178 },
   mark: { src: "/logo-mark.svg", width: 210, height: 109 },
-  // Same logo in dark brown, for the taupe footer.
-  logoDark: { src: "/logo-dark.svg", width: 336, height: 178 },
+  // Same logo in off-white, for taupe backgrounds.
+  logoLight: { src: "/logo-light.svg", width: 336, height: 178 },
 };
 
 export const nav = [
@@ -19,17 +20,16 @@ export const nav = [
 ];
 
 export const hero = {
-  label: "Design and Implementation",
+  label: "Architectural design · Interior design",
   quote:
     "“A Jordanian beginning. A global journey. Since 2016, we have transformed an ambitious idea into a distinctive presence that reaches across continents.”",
-  quoteScript: "j,g",
-  image: "/media/mci/hero-living.jpg",
-  imageAlt: "A bright MCI living room with green armchairs and a lounge sofa",
+  image: "/media/mci/hero-vase.jpg",
+  imageAlt: "A calm living room with a fluted vase on a round table",
 };
 
 export const stats = {
+  label: "Who we are",
   heading: "We shape ideas into spaces people can feel.",
-  headingScript: "w,s",
   left: { value: "14+", label: "Years of experience" },
   right: { value: "2016", label: "A Jordanian beginning" },
   caption:
@@ -40,8 +40,7 @@ export const stats = {
 export const projects = {
   intro:
     "At MCI, design is never just about how a space looks. It is about how everything comes together.",
-  heading: "A collection of signature interiors",
-  headingScript: "s",
+  heading: { small: "Our", solid: "Featured", outline: "Projects" },
   items: [
     { name: "Villa Amara", href: "/project/villa-amara", image: "/media/mci/waterfront-complex.jpg" },
     { name: "The Linden House", href: "/project/the-linden-house", image: "/media/mci/villa-street.jpg" },
@@ -50,8 +49,8 @@ export const projects = {
 };
 
 export const process = {
+  label: "Why MCI?",
   heading: "Because great spaces are never created in fragments.",
-  headingScript: "b,f",
   steps: [
     {
       label: "Listening",
@@ -74,9 +73,49 @@ export const process = {
   ],
 };
 
+// Numbered as in the company profile.
+export const services = {
+  label: "What we do",
+  heading: "One vision. Every detail connected.",
+  intro:
+    "From architecture and interiors to engineering, landscape, and execution, we bring every discipline together to create spaces that feel complete.",
+  image: "/media/mci/double-height.jpg",
+  items: [
+    {
+      name: "Project management",
+      tagline: "Clarity from concept to completion.",
+      body: "We align people, timelines, and details so every project moves efficiently without losing the original vision.",
+    },
+    {
+      name: "Interior design",
+      tagline: "Designed to feel as good as it looks.",
+      body: "We shape spaces through light, material, function, and character—creating interiors that feel effortless, personal, and refined.",
+    },
+    { name: "Architectural design" },
+    {
+      name: "Landscape design",
+      tagline: "Where architecture meets nature.",
+      body: "We create outdoor spaces that extend the experience beyond the walls, bringing balance, identity, and life to every project.",
+    },
+    { name: "Turnkey solutions" },
+  ] as { name: string; tagline?: string; body?: string }[],
+};
+
+// From the company profile.
+export const visionMission = [
+  {
+    title: "Vision",
+    body: "To be the region's premier design and construction firm by crafting exceptional spaces that harmonize architectural innovation, functional efficiency, and uncompromising quality, ultimately delivering residential and investment assets that consistently exceed client expectations.",
+  },
+  {
+    title: "Mission",
+    body: "At MCI, we transform ideas into fully integrated realities. From initial concept to final execution, our multidisciplinary team of engineers, designers, and project managers upholds the highest standards of quality, innovation, and precision. We deliver tailored design and construction solutions that perfectly capture our clients' identities while generating enduring value.",
+  },
+];
+
 export const leadership = {
+  label: "Leadership",
   heading: "A word from the General Manager",
-  headingScript: "w,g",
   image: "/media/mci/lounge.jpg",
   intro:
     "Over the years, we have grown by staying curious, adapting to change, and continuously refining the way we design, manage, and deliver our projects. This journey has earned us the trust of clients across Jordan and the region—and that trust remains one of our greatest achievements.",
@@ -90,32 +129,15 @@ export const leadership = {
   ],
 };
 
-export const services = {
-  label: "What we do",
-  heading: "One vision. Every detail connected.",
-  headingScript: "v,d",
-  intro:
-    "From architecture and interiors to engineering, landscape, and execution, we bring every discipline together to create spaces that feel complete.",
-  items: [
-    {
-      name: "Project management",
-      tagline: "Clarity from concept to completion.",
-      body: "We align people, timelines, and details so every project moves efficiently without losing the original vision.",
-      image: "/media/mci/waterfront-complex.jpg",
-    },
-    {
-      name: "Interior design",
-      tagline: "Designed to feel as good as it looks.",
-      body: "We shape spaces through light, material, function, and character—creating interiors that feel effortless, personal, and refined.",
-      image: "/media/mci/living-desk.jpg",
-    },
-    {
-      name: "Landscape design",
-      tagline: "Where architecture meets nature.",
-      body: "We create outdoor spaces that extend the experience beyond the walls, bringing balance, identity, and life to every project.",
-      image: "/media/mci/villa-street.jpg",
-    },
-  ],
+export const profile = {
+  label: "Company profile",
+  heading: "Architectural design. Interior design.",
+  body: "Who we are, what we do, and our residential projects, gathered in one document.",
+  cta: { label: "Request the profile", href: "/contact" },
+  images: {
+    cover: "/media/mci/profile-cover.jpg",
+    spread: "/media/mci/profile-spread.jpg",
+  },
 };
 
 export const legal = [
@@ -123,31 +145,34 @@ export const legal = [
   { label: "Terms", href: "/legal-pages/terms-conditions" },
 ];
 
+// Contact details from the MCI business card.
+export const contact = {
+  email: "n.alrefai@mcidecor.com",
+  phones: [
+    { region: "KSA", display: "+966 57 355 8858", tel: "+966573558858" },
+    { region: "UAE", display: "+971 52 484 3535", tel: "+971524843535" },
+    { region: "JO", display: "+962 79 960 7760", tel: "+962799607760" },
+  ],
+};
+
 export const footer = {
   cta: "Thoughtful design, seamlessly brought to life.",
-  ctaScript: "t,l",
   ctaImage: "/media/mci/sunlit-living.jpg",
   ctaThumb: "/media/mci/armchair-square.jpg",
+  ctaHref: "/contact",
   tagline: "Complete, cohesive, and uniquely yours.",
-  taglineScript: "c,y",
-  email: "support@yourbrand.com",
-  phone: "+1 202 555 0147",
   connect: [
     { label: "Instagram", href: "https://www.instagram.com/" },
-    { label: "Pinterest", href: "https://www.pinterest.com/" },
     { label: "Facebook", href: "https://www.facebook.com/" },
-    { label: "Dribbble", href: "https://dribbble.com/" },
-    { label: "YouTube", href: "https://www.youtube.com/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/" },
   ],
-  address: ["214 Harvest Lane", "Portland, OR 97204"],
-  ctaHref: "/contact",
   ticker: <({ image: string } | { text: string })[]>[
     { image: "/media/mci/ticker-1.jpg" },
-    { image: "/media/mci/ticker-2.jpg" },
+    { image: "/media/mci/ticker-8.jpg" },
     { text: "Architecture." },
     { text: "Interiors." },
     { image: "/media/mci/ticker-3.jpg" },
-    { image: "/media/mci/ticker-4.jpg" },
+    { image: "/media/mci/ticker-7.jpg" },
     { text: "Landscape." },
     { text: "Engineering." },
     { image: "/media/mci/ticker-5.jpg" },
@@ -159,7 +184,6 @@ export const footer = {
 // shows the "coming soon" screen; any other address is a normal 404.
 export const comingSoon = {
   heading: "Coming soon",
-  headingScript: "c,s",
   body: "We are still shaping this page. Until then, the home page tells the full story.",
   image: "/media/mci/lounge.jpg",
 };
