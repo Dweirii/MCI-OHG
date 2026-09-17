@@ -118,6 +118,11 @@ export const services = {
   ],
 };
 
+export const legal = [
+  { label: "Privacy Policy", href: "/legal-pages/privacy-policy" },
+  { label: "Terms", href: "/legal-pages/terms-conditions" },
+];
+
 export const footer = {
   cta: "Thoughtful design, seamlessly brought to life.",
   ctaScript: "t,l",
@@ -135,6 +140,7 @@ export const footer = {
     { label: "YouTube", href: "https://www.youtube.com/" },
   ],
   address: ["214 Harvest Lane", "Portland, OR 97204"],
+  ctaHref: "/contact",
   ticker: <({ image: string } | { text: string })[]>[
     { image: "/media/mci/ticker-1.jpg" },
     { image: "/media/mci/ticker-2.jpg" },
@@ -148,3 +154,24 @@ export const footer = {
     { image: "/media/mci/ticker-6.jpg" },
   ],
 };
+
+// Pages that aren't built yet. Every internal link points at one of these and
+// shows the "coming soon" screen; any other address is a normal 404.
+export const comingSoon = {
+  heading: "Coming soon",
+  headingScript: "c,s",
+  body: "We are still shaping this page. Until then, the home page tells the full story.",
+  image: "/media/mci/lounge.jpg",
+};
+
+const pageNames = new Map<string, string>([
+  ...nav.map((n) => [n.href, n.label] as const),
+  ...projects.items.map((p) => [p.href, p.name] as const),
+  ...legal.map((l) => [l.href, l.label] as const),
+]);
+
+export const comingSoonPaths = [...pageNames.keys()].filter((href) => href !== "/");
+
+export function pageName(href: string) {
+  return pageNames.get(href);
+}

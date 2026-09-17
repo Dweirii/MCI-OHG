@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { brand, nav } from "@/content";
 import { Sparkle } from "./ui";
@@ -9,6 +10,9 @@ import { Sparkle } from "./ui";
 /** Sits over the hero photo: logo on the left, links on the right. */
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <header className="absolute inset-x-0 top-0 z-30 px-[30px] pt-[30px] max-md:px-5 max-md:pt-5">
@@ -25,17 +29,17 @@ export function Nav() {
         </Link>
 
         <nav className="flex items-center gap-12 max-lg:gap-7 max-md:hidden">
-          {nav.map((item, i) => (
+          {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={`group flex items-center gap-2.5 text-nav transition-colors ${
-                i === 0 ? "text-skin" : "text-ivory hover:text-skin"
+                isActive(item.href) ? "text-skin" : "text-ivory hover:text-skin"
               }`}
             >
               <Sparkle
                 className={`size-2.5 text-skin transition-transform duration-500 ${
-                  i === 0 ? "rotate-90" : "group-hover:rotate-90"
+                  isActive(item.href) ? "rotate-90" : "group-hover:rotate-90"
                 }`}
               />
               {item.label}

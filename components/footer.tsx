@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { brand, footer, nav } from "@/content";
+import { brand, footer, legal, nav } from "@/content";
 import { Button, MixedText, Sparkle } from "./ui";
 
 export function Footer() {
@@ -73,7 +73,7 @@ export function Footer() {
               <br />
               {footer.address[1]}
             </p>
-            <Button href="/contact" tone="dark" className="mt-6 w-[200px]">
+            <Button href={footer.ctaHref} tone="dark" className="mt-6 w-[200px]">
               Start a project
             </Button>
           </FooterColumn>
@@ -99,12 +99,11 @@ export function Footer() {
             </a>
           </p>
           <div className="flex gap-10">
-            <Link href="/legal-pages/privacy-policy" className="hover:text-dark">
-              Privacy Policy
-            </Link>
-            <Link href="/legal-pages/terms-conditions" className="hover:text-dark">
-              Terms
-            </Link>
+            {legal.map((item) => (
+              <Link key={item.href} href={item.href} className="hover:text-dark">
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
