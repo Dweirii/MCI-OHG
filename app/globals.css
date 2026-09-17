@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+/* Colour and type tokens, taken from the Framer project's styles. */
+@theme {
+  --color-dark: #211a14;
+  --color-ivory: #f1ebe2;
+  --color-skin: #a79182;
+  --color-stone: #a19c96;
+  --color-sand: #e9e1d4;
+  --color-mocha: #6e6357;
+  --color-cream: #f5ede4;
+  --color-ivory-5: rgb(241 235 226 / 0.05);
+  --color-ivory-10: rgb(241 235 226 / 0.1);
+  --color-mocha-20: rgb(110 99 87 / 0.2);
+
+  --font-heading: var(--font-geist);
+  --font-body: var(--font-inter);
+  --font-script: var(--font-mea-culpa);
+
+  --breakpoint-md: 810px;
+  --breakpoint-lg: 1200px;
+}
+
+html {
+  background: var(--color-dark);
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-dark);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  /* Heading scale: Geist, uppercase, tight tracking. Sizes step down at the
+     Framer tablet (810-1199) and phone (<810) breakpoints. */
+  .h-xl {
+    font-family: var(--font-heading);
+    font-size: 120px;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+  .h2 {
+    font-family: var(--font-heading);
+    font-size: 64px;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+  .h3 {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+  .h3-sm {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+  .h4 {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+  .h5 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+  .h6 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+  .text-nav {
+    font-size: 14px;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+  .text-label {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 1199px) {
+    .h-xl {
+      font-size: 88px;
+    }
+    .h2 {
+      font-size: 48px;
+    }
+    .h3-sm,
+    .h3 {
+      font-size: 28px;
+    }
+  }
+  @media (max-width: 809px) {
+    .h-xl {
+      font-size: 48px;
+    }
+    .h2 {
+      font-size: 34px;
+    }
+    .h3,
+    .h3-sm,
+    .h4 {
+      font-size: 24px;
+    }
+    .h5 {
+      font-size: 20px;
+    }
+  }
+
+  /* Mixed-font letters used inside headings. */
+  .ch-script {
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-style: normal;
+  }
+  .ch-italic {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-style: italic;
+  }
+  /* Keep the swapped fonts from stretching the line box. */
+  .ch-script,
+  .ch-italic {
+    line-height: 0;
+  }
+}
+
+.balance {
+  text-wrap: balance;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-in {
+  animation: fade-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee,
+  .fade-in {
+    animation: none;
+  }
+}
